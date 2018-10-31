@@ -1,0 +1,11 @@
+ ::ng-deep .amcharts-balloon-div{
+    -webkit-box-shadow: 0px 0px 3px 0px #A9A9A9;
+    -moz-box-shadow: 0px 0px 3px 0px #A9A9A9;
+    box-shadow: 0px 0px 3px 0px #A9A9A9;
+    padding: 3px;
+    font-weight: bold;
+  }
+
+ ::ng-deep .amcharts-chart-div a {
+      visibility: hidden;
+  }

@@ -1,0 +1,48 @@
+<div style="text-align:center">
+  <div>
+    <form class="example-form">
+        <mat-form-field class="demo-chip-list" style="width: 100%;">
+          <div fxLayout="row" fxLayoutAlign="space-between center">
+              <div>
+                  <mat-chip-list #chipList>
+                    <mat-chip *ngFor="let selectedJurisdictionSearch of selectedJurisdictionsSearch"
+                    [selectable]="selectable"
+                    [removable]="removable"
+                    (removed)="removeChip(selectedJurisdictionSearch)">
+                      {{selectedJurisdictionSearch.name }}
+                      <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+                    </mat-chip>
+                    <input
+                    placeholder="Add country names or regions separated by a comma"
+                    #jurisdictionInput
+                    [formControl]="jurisdictionsCtrl"
+                    [matAutocomplete]="auto"
+                    [matChipInputFor]="chipList"
+                    [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+                    [matChipInputAddOnBlur]="addOnBlur">
+                    <!-- (matChipInputTokenEnd)="add($event)" -->
+                  </mat-chip-list>
+                  <mat-autocomplete #auto="matAutocomplete" (optionSelected)="jurisdictionOptionSelected($event)">
+                    <mat-option *ngFor="let jurisdiction of filteredJurisdictions | async" [value]="jurisdiction">
+                      {{jurisdiction.name}}
+                    </mat-option>
+                  </mat-autocomplete>
+                </div>
+
+              <br>
+              <div class="button-container">
+                <button class="btn action-button" mat-raised-button (click)="addSelectedJurisdictionsSearch()" color="primary">
+                  SAVE
+                </button>
+              </div>
+          </div>
+
+
+      </mat-form-field>
+        <!-- <button mat-raised-button color="primary" (click)="addJurisdictions()">Select</button> -->
+    </form>
+  </div>
+  <div id="chartdiv" [style.width.%]="100" [style.height.px]="500"></div>
+</div>
+
+<div id="info">Seletced countries: <span id="selected">-</span></div>
